@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Studio</title>
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <aside class="panel panel--tasks" aria-label="Task manager">
+        <header class="panel-header">
+          <h1 class="panel-title">Tasks</h1>
+          <button class="button button--ghost" id="tasks-delete" type="button" aria-label="Delete selected tasks">Delete selected</button>
+        </header>
+
+        <div class="task-counts">
+          <button class="button button--pill" id="tasks-done-toggle" type="button">
+            Done <strong id="tasks-done-count">0</strong>
+          </button>
+          <span class="task-count-chip">To do <strong id="tasks-remaining">0</strong></span>
+        </div>
+
+        <div class="task-input-row">
+          <label class="sr-only" for="todo-input">Add task</label>
+          <input class="input" id="todo-input" type="text" placeholder="Add a new task" maxlength="80" />
+          <button class="button button--primary" id="todo-add" type="button">Add</button>
+        </div>
+
+        <ul class="task-list" id="todo-list" aria-live="polite"></ul>
+      </aside>
+
+      <main class="panel panel--main" aria-label="Pomodoro controls">
+        <section class="card controls-card">
+          <div class="clock-group">
+            <p class="clock-label">Current time</p>
+            <p class="clock" id="clock">--:--:--</p>
+            <p class="clock-quote" id="clock-quote">One focused block at a time.</p>
+          </div>
+
+          <div class="mode-buttons">
+            <button class="button button--accent" id="start-focus" type="button">Start focus</button>
+            <button class="button button--ghost" id="start-short" type="button">Short break</button>
+            <button class="button button--ghost" id="start-long" type="button">Long break</button>
+            <button class="button button--danger" id="stop-session" type="button">Stop</button>
+          </div>
+        </section>
+
+        <section class="card timer-card" id="timer-panel">
+          <div class="timer-head">
+            <h2 class="timer-title">Time left</h2>
+            <span class="timer-mode" id="timer-mode">Focus</span>
+          </div>
+
+          <div class="timer-presets" role="group" aria-label="Timer presets">
+            <button class="button button--pill timer-preset is-active" type="button" data-preset-index="0">25:00</button>
+            <button class="button button--pill timer-preset" type="button" data-preset-index="1">5:00</button>
+            <button class="button button--pill timer-preset" type="button" data-preset-index="2">15:00</button>
+            <button class="button button--pill" id="timer-settings" type="button" aria-label="Open timer settings">Edit</button>
+          </div>
+
+          <p class="timer-value" id="session-timer">25:00</p>
+        </section>
+      </main>
+
+      <aside class="panel panel--media" aria-label="Focus music">
+        <header class="panel-header">
+          <h2 class="panel-title panel-title--small">Focus music</h2>
+        </header>
+        <iframe title="Spotify playlist" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdo6A3mWpdWx?utm_source=generator&theme=0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </aside>
+
+      <section class="panel panel--stats" aria-label="Session stats">
+        <header class="panel-header">
+          <h2 class="panel-title panel-title--small">Session stats</h2>
+        </header>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-label">Sessions</span>
+            <strong class="stat-value" id="session-count">0</strong>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Breaks</span>
+            <strong class="stat-value" id="break-count">0</strong>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Done</span>
+            <strong class="stat-value" id="stats-done">0</strong>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Total</span>
+            <strong class="stat-value" id="stats-total">0</strong>
+          </div>
+        </div>
+
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="stats-progress-bar"></div>
+        </div>
+
+        <p class="stats-message" id="stats-message">Add your first task to start.</p>
+        <p class="stats-caption">Session number <strong id="stats-session-number">0</strong></p>
+      </section>
+    </div>
+
+    <div class="modal" id="timer-modal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="timer-modal-title">
+        <h2 class="modal-title" id="timer-modal-title">Edit timer presets</h2>
+
+        <div class="modal-row">
+          <label for="timer-input-1">Focus (minutes)</label>
+          <input class="input" id="timer-input-1" type="number" min="1" max="180" step="1" />
+        </div>
+        <div class="modal-row">
+          <label for="timer-input-2">Short break (minutes)</label>
+          <input class="input" id="timer-input-2" type="number" min="1" max="180" step="1" />
+        </div>
+        <div class="modal-row">
+          <label for="timer-input-3">Long break (minutes)</label>
+          <input class="input" id="timer-input-3" type="number" min="1" max="180" step="1" />
+        </div>
+
+        <p class="modal-error" id="timer-modal-error" aria-live="polite"></p>
+
+        <div class="modal-actions">
+          <button class="button button--ghost" id="timer-modal-cancel" type="button">Cancel</button>
+          <button class="button button--primary" id="timer-modal-save" type="button">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

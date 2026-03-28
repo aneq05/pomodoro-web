@@ -1,0 +1,91 @@
+﻿#app {
+	min-height: 100vh;
+}
+
+.app-shell {
+	display: grid;
+	grid-template-columns: minmax(250px, 310px) minmax(560px, 1fr) minmax(250px, 320px);
+	grid-template-rows: minmax(360px, 1fr) minmax(280px, auto);
+	gap: var(--space-4);
+	padding: clamp(0.8rem, 1vw, 1.4rem);
+	width: min(1920px, 100%);
+	margin-inline: auto;
+	min-height: 100vh;
+}
+
+.panel {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow);
+	backdrop-filter: blur(6px);
+	overflow: hidden;
+}
+
+.panel--tasks {
+	grid-column: 1;
+	grid-row: 1 / span 2;
+}
+
+.panel--main {
+	grid-column: 2;
+	grid-row: 1 / span 2;
+}
+
+.panel--media {
+	grid-column: 3;
+	grid-row: 1;
+}
+
+.panel--stats {
+	grid-column: 3;
+	grid-row: 2;
+}
+
+@media (max-width: 1320px) {
+	.app-shell {
+		grid-template-columns: minmax(240px, 290px) minmax(580px, 1fr);
+		grid-template-rows: auto auto auto;
+	}
+
+	.panel--tasks {
+		grid-column: 1;
+		grid-row: 1 / span 3;
+	}
+
+	.panel--main {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	.panel--media {
+		grid-column: 2;
+		grid-row: 2;
+	}
+
+	.panel--stats {
+		grid-column: 2;
+		grid-row: 3;
+	}
+}
+
+@media (max-width: 1080px) {
+	body {
+		overflow: auto;
+	}
+
+	.app-shell {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		max-width: 980px;
+		min-height: auto;
+	}
+
+	.panel--tasks,
+	.panel--main,
+	.panel--media,
+	.panel--stats {
+		grid-column: 1;
+		grid-row: auto;
+	}
+}
