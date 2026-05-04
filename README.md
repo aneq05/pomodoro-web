@@ -16,8 +16,6 @@ This project is a browser Pomodoro timer with:
 - Motivational quote rotation
 - Spotify embed panel for focus sessions
 
-The codebase was refactored from a single-file implementation into feature-based modules to improve scalability and readability.
-
 ## Tech Stack
 
 - TypeScript
