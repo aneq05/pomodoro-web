@@ -78,7 +78,7 @@ The codebase was refactored from a single-file implementation into feature-based
 
 ### Requirements
 
-- Node.js 20+ (Node 22 recommended)
+- Node.js 20+
 - npm
 
 ### Install
